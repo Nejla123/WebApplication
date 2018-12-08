@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2018-12-07T19:04:32Z" name="Default suite" finished-at="2018-12-07T19:04:48Z" duration-ms="16373">
+    <groups>
+    </groups>
+    <test started-at="2018-12-07T19:04:32Z" name="Default test" finished-at="2018-12-07T19:04:48Z" duration-ms="16373">
+      <class name="test.regression.CreateAccountFillFields">
+        <test-method is-config="true" signature="setupEnviromnent()[pri:0, instance:test.regression.CreateAccountFillFields@4e50c791]" started-at="2018-12-07T19:04:32Z" name="setupEnviromnent" finished-at="2018-12-07T19:04:38Z" duration-ms="6310" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupEnviromnent -->
+        <test-method signature="testCreateAccountFillField()[pri:0, instance:test.regression.CreateAccountFillFields@4e50c791]" started-at="2018-12-07T19:04:38Z" name="testCreateAccountFillField" finished-at="2018-12-07T19:04:48Z" duration-ms="9982" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateAccountFillField -->
+      </class> <!-- test.regression.CreateAccountFillFields -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
