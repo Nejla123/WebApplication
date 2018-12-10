@@ -75,8 +75,6 @@ public class MakeFreeReservation {
 
 	@FindBy(xpath = "/html/body/div[2]/div[1]/div/div/div/form/div/div[4]/input")
 	WebElement timeField2;
-	@FindBy(xpath = "/html/body/div[2]/div[1]/div/div/div/form/div/div[5]/select")
-	WebElement durationField;
 
 	@FindBy(xpath = "/html/body/div[2]/div[1]/div/div/div/form/div/div[5]/button")
 	WebElement findTableButton;
@@ -168,6 +166,12 @@ public class MakeFreeReservation {
 	@FindBy(xpath = "//*[@id=\"Reservation\"]/div[2]/button[1]")
 	WebElement nearestTimeForFilteredObject;
 
+	@FindBy(xpath = "/html/body/div[2]/div[4]/div/div[2]/button/h4")
+	WebElement popularLocationCity;
+
+	@FindBy(xpath = "/html/body/div[2]/div[1]/div[3]/div[2]/div/button")
+	WebElement popularLocationRestaurant;
+
 	public MakeFreeReservation(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -199,11 +203,6 @@ public class MakeFreeReservation {
 //		timeField.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
 //
 //	}
-
-	public void chooseDuration() throws InterruptedException {
-		durationField.sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
-
-	}
 
 	public void clickOnFindTableButton() throws InterruptedException {
 		findTableButton.click();
@@ -316,9 +315,9 @@ public class MakeFreeReservation {
 
 	}
 
-	public void setDay(String dayField1) {
+	public void setDay(String dayField1) throws InterruptedException {
 		dayField.sendKeys(dayField1);
-		dayField.sendKeys(Keys.ARROW_RIGHT);
+		dayField.sendKeys(Keys.TAB);
 
 	}
 
@@ -340,7 +339,7 @@ public class MakeFreeReservation {
 
 	public void setTime2(String timeFieldsecond) {
 		timeField2.sendKeys(timeFieldsecond);
-		timeField2.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+		timeField2.sendKeys(Keys.ARROW_RIGHT, Keys.ARROW_DOWN);
 
 	}
 
@@ -459,6 +458,21 @@ public class MakeFreeReservation {
 
 	public void clickOnNearestTimeForFilteredObject() {
 		nearestTimeForFilteredObject.click();
+	}
+
+	public void scrollDownPopularLocation() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,2000)");
+		Thread.sleep(1000);
+
+	}
+
+	public void clickOnPopularLocationCity() {
+		popularLocationCity.click();
+	}
+
+	public void clickOnPopularLocationRestaurant() {
+		popularLocationRestaurant.click();
 	}
 
 }

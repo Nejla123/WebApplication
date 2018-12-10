@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import model.MakeFreeReservation;
 
-public class BookFromSectionRestaurants {
+public class MakeReservationFromPopularLocations {
 	private WebDriver driver;
 	private MakeFreeReservation makeReservation;
 	private String baseURL = "https://ridvansrestaurantclient.herokuapp.com/";
@@ -24,7 +24,6 @@ public class BookFromSectionRestaurants {
 	private String yearForFilteredObject = "2018";
 	private String time1FieldForFilteringObject = "02";
 	private String time2FieldForFilteringObject = "00";
-	private String time3FieldForFilteringObject = "pm";
 
 	@BeforeTest
 	public void setupEnviromnent() {
@@ -34,44 +33,21 @@ public class BookFromSectionRestaurants {
 
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS); <--- ceka na page load da izvrsi JS code
-
 		makeReservation = new MakeFreeReservation(driver);
-
 	}
 
 	@Test
-	public void testBookFromSectionRestaurants() throws InterruptedException {
+	public void testMakeReservationFromPopularLocations() throws InterruptedException {
 		driver.get(baseURL);
-
 		makeReservation.clickOnLoginLink();
+
 		makeReservation.setLoginEmailField(loginEmailField);
 		makeReservation.setLoginPasswordField(loginPasswordField);
 		makeReservation.clickOnLoginButton();
 		makeReservation.clickOnHomeLink();
-
-		makeReservation.clickOnRestaurantsLink();
-
-		makeReservation.clickOnFindByButton();
-		// makeReservation.clickOnPrice();
-		makeReservation.clickOnRate();
-		// makeReservation.clickOnAmericanCousine();
-		// makeReservation.clickOnFastFoodCousine();
-		makeReservation.clickOnFilterSearchButton();
-		makeReservation.clickOnFilteredObject();
-
-		makeReservation.clickOnAboutField();
-
-		makeReservation.scrollToTop();
-		makeReservation.clickOnMenuButton();
-		makeReservation.clickOnLunchButton();
-		makeReservation.clickOnDinnerButton();
-
-		makeReservation.clickOnShowFullMenuButton();
-		makeReservation.scrollToTop();
-		makeReservation.clickOnReviewsButton();
-		makeReservation.scrollToTop();
-
+		makeReservation.scrollDownPopularLocation();
+		makeReservation.clickOnPopularLocationCity();
+		makeReservation.clickOnPopularLocationRestaurant();
 		makeReservation.setGuestesForFilteredObject(guestsForFilteredObject);
 		makeReservation.setDayForFilteredObject(dayForFilteredObject);
 		makeReservation.setMonthForFilteredObject(monthForFilteredObject);
@@ -85,12 +61,11 @@ public class BookFromSectionRestaurants {
 		makeReservation.clickOnMyReservationLink();
 
 		WebElement tooltip1 = driver
-				.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button[1]"));
+				.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button[3]"));
 		String message1 = tooltip1.getAttribute("class");
 		AssertJUnit.assertEquals(message1, "row-reservation btn-block ng-scope");
 
 		driver.close();
 
 	}
-
 }

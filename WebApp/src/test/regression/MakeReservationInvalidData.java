@@ -74,6 +74,7 @@ public class MakeReservationInvalidData {
 		String message2 = tooltip2.getAttribute("class");
 		AssertJUnit.assertEquals(message2,
 				"form-control home-form-control ng-not-empty ng-valid-max ng-dirty ng-valid-parse ng-invalid ng-invalid-min ng-touched");
+		driver.close();
 
 	}
 

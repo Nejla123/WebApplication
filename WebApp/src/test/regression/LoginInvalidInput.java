@@ -42,6 +42,7 @@ public class LoginInvalidInput {
 		WebElement login = driver.findElement(By.xpath("/html/body/div[2]/div/form/div[1]/p"));
 		String message = login.getAttribute("class");
 		AssertJUnit.assertEquals(message, "help-block");
+		driver.close();
 
 	}
 }

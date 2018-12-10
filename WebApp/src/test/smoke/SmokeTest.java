@@ -40,6 +40,7 @@ public class SmokeTest {
 
 	}
 
+	@Test
 	public void testMakeFreeReservation() throws InterruptedException {
 		driver.get(baseURL);
 		makeReservation.clickOnLoginLink();

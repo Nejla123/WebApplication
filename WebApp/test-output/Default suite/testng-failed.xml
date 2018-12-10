@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="test.regression.CreateAccountFillFields">
+      <class name="test.regression.BookFromSectionRestaurants">
         <methods>
+          <include name="testBookFromSectionRestaurants"/>
           <include name="setupEnviromnent"/>
-          <include name="testCreateAccountFillField"/>
         </methods>
-      </class> <!-- test.regression.CreateAccountFillFields -->
+      </class> <!-- test.regression.BookFromSectionRestaurants -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
