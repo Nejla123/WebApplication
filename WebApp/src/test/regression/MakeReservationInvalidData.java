@@ -39,25 +39,19 @@ public class MakeReservationInvalidData {
 
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void testMakeReservationInvalidData() throws InterruptedException {
 
 		driver.get(baseURL);
 		makeReservation.clickOnLoginLink();
 		makeReservation.setLoginEmailField(loginEmailField);
-
 		makeReservation.setLoginPasswordField(loginPasswordField);
 		makeReservation.clickOnLoginButton();
-
 		makeReservation.setSearchBarField(searchBarField);
 		makeReservation.setGuestsField(guestsField);
-
 		makeReservation.setDay(dayField);
-
 		makeReservation.setMonth(monthField);
-
 		makeReservation.setYear(yearField);
-
 		makeReservation.setTime1(timeField1);
 		makeReservation.setTime2(timeField2);
 
@@ -65,17 +59,16 @@ public class MakeReservationInvalidData {
 
 		WebElement tooltip1 = driver
 				.findElement(By.xpath("/html/body/div[2]/div[1]/div/div/div/form/div/div[2]/input"));
-		String message1 = tooltip1.getAttribute("class");
-		AssertJUnit.assertEquals(message1,
+		String messageGuestsField = tooltip1.getAttribute("class");
+		AssertJUnit.assertEquals(messageGuestsField,
 				"form-control home-form-control ng-dirty ng-empty ng-invalid ng-invalid-number ng-touched");
 
 		WebElement tooltip2 = driver
 				.findElement(By.xpath("/html/body/div[2]/div[1]/div/div/div/form/div/div[3]/input"));
-		String message2 = tooltip2.getAttribute("class");
-		AssertJUnit.assertEquals(message2,
+		String messageDateField = tooltip2.getAttribute("class");
+		AssertJUnit.assertEquals(messageDateField,
 				"form-control home-form-control ng-not-empty ng-valid-max ng-dirty ng-valid-parse ng-invalid ng-invalid-min ng-touched");
 		driver.close();
-
 	}
 
 }

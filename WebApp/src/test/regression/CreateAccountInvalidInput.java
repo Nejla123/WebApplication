@@ -35,7 +35,7 @@ public class CreateAccountInvalidInput {
 
 		}
 
-		@Test
+		@Test(priority = 1)
 		public void testCreateAccountInvalidInput() {
 
 			driver.get(baseURL);
@@ -45,16 +45,20 @@ public class CreateAccountInvalidInput {
 			createAccount.setFirstName(firstNameField);
 			createAccount.setLastName(lastNameField);
 			createAccount.setEmail(emailField);
-			createAccount.setPhoneNumber(phoneNumberField);
 
 			WebElement invalidEmail = driver.findElement(By.xpath("/html/body/div[2]/div/form/div[3]/p"));
 			String message = invalidEmail.getAttribute("class");
 			AssertJUnit.assertEquals(message, "help-block");
 
-			WebElement invalidEmailField = driver.findElement(By.xpath("//*[@id=\"email\"]"));
-			String highlighed = invalidEmailField.getAttribute("class");
-			AssertJUnit.assertEquals(highlighed,
-					"login-form-control input-lg input-h ng-invalid ng-not-empty ng-dirty ng-valid-parse ng-invalid-email ng-valid-required ng-touched");
+			WebElement invalidEmailField = driver.findElement(By.xpath("/html/body/div[2]/div/form/div[3]"));
+			String highlighedEmailField = invalidEmailField.getAttribute("class");
+			AssertJUnit.assertEquals(highlighedEmailField, "form-group formg has-error");
+
+			createAccount.setPhoneNumber(phoneNumberField);
+
+			WebElement invalidPhoneNumber = driver.findElement(By.xpath("/html/body/div[2]/div/form/div[4]"));
+			String highlighedPhoneNumberField = invalidPhoneNumber.getAttribute("class");
+			AssertJUnit.assertEquals(highlighedPhoneNumberField, "form-group formg");
 
 			driver.close();
 

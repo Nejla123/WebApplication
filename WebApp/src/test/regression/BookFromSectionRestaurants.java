@@ -24,7 +24,6 @@ public class BookFromSectionRestaurants {
 	private String yearForFilteredObject = "2018";
 	private String time1FieldForFilteringObject = "02";
 	private String time2FieldForFilteringObject = "00";
-	private String time3FieldForFilteringObject = "pm";
 
 	@BeforeTest
 	public void setupEnviromnent() {
@@ -34,13 +33,11 @@ public class BookFromSectionRestaurants {
 
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS); <--- ceka na page load da izvrsi JS code
-
 		makeReservation = new MakeFreeReservation(driver);
 
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void testBookFromSectionRestaurants() throws InterruptedException {
 		driver.get(baseURL);
 
@@ -49,29 +46,40 @@ public class BookFromSectionRestaurants {
 		makeReservation.setLoginPasswordField(loginPasswordField);
 		makeReservation.clickOnLoginButton();
 		makeReservation.clickOnHomeLink();
-
 		makeReservation.clickOnRestaurantsLink();
 
 		makeReservation.clickOnFindByButton();
-		// makeReservation.clickOnPrice();
 		makeReservation.clickOnRate();
-		// makeReservation.clickOnAmericanCousine();
-		// makeReservation.clickOnFastFoodCousine();
 		makeReservation.clickOnFilterSearchButton();
 		makeReservation.clickOnFilteredObject();
-
 		makeReservation.clickOnAboutField();
+
+		WebElement titleAbout = driver.findElement(By.xpath("//*[@id=\"About\"]/h5"));
+		String aboutObject = titleAbout.getAttribute("class");
+		AssertJUnit.assertEquals(aboutObject, "restaurant-h5 ng-binding");
+
+		WebElement titleDescription = driver.findElement(By.xpath("//*[@id=\"About\"]/h6"));
+		String descriptionAbout = titleDescription.getAttribute("class");
+		AssertJUnit.assertEquals(descriptionAbout, "desc restaurant-h6");
 
 		makeReservation.scrollToTop();
 		makeReservation.clickOnMenuButton();
+
+		WebElement titleMenu = driver.findElement(By.xpath("//*[@id=\"Menu\"]"));
+		String menuSection = titleMenu.getAttribute("class");
+		AssertJUnit.assertEquals(menuSection, "container-card ng-scope");
+
 		makeReservation.clickOnLunchButton();
 		makeReservation.clickOnDinnerButton();
-
 		makeReservation.clickOnShowFullMenuButton();
 		makeReservation.scrollToTop();
 		makeReservation.clickOnReviewsButton();
-		makeReservation.scrollToTop();
 
+		WebElement titleReview = driver.findElement(By.xpath("//*[@id=\"Reviews\"]/h5"));
+		String reviewSection = titleReview.getAttribute("class");
+		AssertJUnit.assertEquals(reviewSection, "h5-heading-reservation review-h5 restaurant-h5");
+
+		makeReservation.scrollToTop();
 		makeReservation.setGuestesForFilteredObject(guestsForFilteredObject);
 		makeReservation.setDayForFilteredObject(dayForFilteredObject);
 		makeReservation.setMonthForFilteredObject(monthForFilteredObject);
@@ -81,6 +89,7 @@ public class BookFromSectionRestaurants {
 		makeReservation.clickOnFindTableForFilteredObject();
 		makeReservation.clickOnNearestTimeForFilteredObject();
 		makeReservation.scrollDown();
+
 		makeReservation.clickOnCompleteReservationButton();
 		makeReservation.clickOnMyReservationLink();
 

@@ -31,7 +31,7 @@ public class LoginInvalidInput {
 
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void testLoginInvalidInput() {
 		driver.get(baseURL);
 		login.clickOnLoginLink();

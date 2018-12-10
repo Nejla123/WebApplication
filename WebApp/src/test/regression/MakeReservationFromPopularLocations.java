@@ -36,7 +36,7 @@ public class MakeReservationFromPopularLocations {
 		makeReservation = new MakeFreeReservation(driver);
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void testMakeReservationFromPopularLocations() throws InterruptedException {
 		driver.get(baseURL);
 		makeReservation.clickOnLoginLink();
@@ -46,6 +46,11 @@ public class MakeReservationFromPopularLocations {
 		makeReservation.clickOnLoginButton();
 		makeReservation.clickOnHomeLink();
 		makeReservation.scrollDownPopularLocation();
+
+		WebElement section = driver.findElement(By.xpath("/html/body/div[2]/div[4]/h3"));
+		String titlePopularLocations = section.getAttribute("class");
+		AssertJUnit.assertEquals(titlePopularLocations, "text-center container-h3");
+
 		makeReservation.clickOnPopularLocationCity();
 		makeReservation.clickOnPopularLocationRestaurant();
 		makeReservation.setGuestesForFilteredObject(guestsForFilteredObject);

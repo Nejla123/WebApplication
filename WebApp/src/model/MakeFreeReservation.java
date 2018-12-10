@@ -82,7 +82,7 @@ public class MakeFreeReservation {
 	@FindBy(xpath = "/html/body/div[2]/div[1]/div[3]/div[2]/div/img")
 	WebElement object;
 
-	@FindBy(xpath = "//*[@id=\"Reservation\"]/form/div/div[5]/button")
+	@FindBy(xpath = "//*[@id=\"Reservation\"]/form/div/div[4]/button")
 	WebElement findTableButton2;
 
 	@FindBy(xpath = "//*[@id=\"Reservation\"]/div[2]/button")
@@ -185,24 +185,6 @@ public class MakeFreeReservation {
 		guestsField.sendKeys(string);
 		guestsField.sendKeys(Keys.TAB);
 	}
-
-//	public void setDate(String string, String string2, String string3) throws InterruptedException {
-//		dateField.sendKeys(string);
-//		dateField.sendKeys(Keys.ARROW_RIGHT);
-//		dateField.sendKeys(string2);
-//		dateField.sendKeys(Keys.ARROW_RIGHT);
-//		dateField.sendKeys(string3);
-//		dateField.sendKeys(Keys.TAB);
-//
-//	}
-
-//	public void setTime(String string, String string2) throws InterruptedException {
-//		timeField.sendKeys(string);
-//		timeField.sendKeys(string2);
-//
-//		timeField.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-//
-//	}
 
 	public void clickOnFindTableButton() throws InterruptedException {
 		findTableButton.click();
@@ -432,7 +414,6 @@ public class MakeFreeReservation {
 		Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0,0);");
-//		Thread.sleep(1000);
 
 	}
 

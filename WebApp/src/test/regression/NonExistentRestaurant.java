@@ -38,7 +38,7 @@ public class NonExistentRestaurant {
 		makeReservation = new MakeFreeReservation(driver);
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void testNonExistentRestaurant() throws InterruptedException {
 		driver.get(baseURL);
 		makeReservation.clickOnLoginLink();

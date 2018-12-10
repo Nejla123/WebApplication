@@ -64,12 +64,13 @@ public class SmokeTest {
 		makeReservation.clickOnFindTableButton2();
 		makeReservation.clickOnNearestTimeButton();
 		makeReservation.scrollDown();
-		// makeReservation.clickOnCompleteReservationButton();
+		makeReservation.clickOnCompleteReservationButton();
 		makeReservation.clickOnMyReservationLink();
 
 		WebElement completedReservation = driver
 				.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button/div[1]"));
 		String title = completedReservation.getAttribute("class");
 		AssertJUnit.assertEquals(title, "col-xs-4 col-info ng-binding");
+		driver.close();
 	}
 }

@@ -32,21 +32,21 @@ public class MakeReservationNoInputData {
 
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void testMakeReservationNoInputData() throws InterruptedException {
 		driver.get(baseURL);
 		makeReservation.clickOnLoginLink();
 		makeReservation.setLoginEmailField(loginEmailField);
-
 		makeReservation.setLoginPasswordField(loginPasswordField);
 		makeReservation.clickOnLoginButton();
 		makeReservation.clickOnFindTableButton();
 
 		WebElement tooltipBellowTheField = driver
 				.findElement(By.xpath("/html/body/div[2]/div[1]/div/div/div/form/div/div[4]/input"));
-		String messageBellowTheField = tooltipBellowTheField.getAttribute("class");
-		AssertJUnit.assertEquals(messageBellowTheField,
-				"form-control home-form-control ng-pristine ng-empty ng-valid-min ng-valid-max ng-invalid ng-invalid-required ng-touched");
+		String messageBellowTheField1 = tooltipBellowTheField.getAttribute("class");
+		AssertJUnit.assertEquals(messageBellowTheField1,
+				"form-control home-form-control ng-pristine ng-untouched ng-empty ng-valid-min ng-valid-max ng-invalid ng-invalid-required");
+
 		driver.close();
 
 	}

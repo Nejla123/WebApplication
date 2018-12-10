@@ -52,7 +52,7 @@ public class CreateAccountFillFields {
 
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void testCreateAccountFillField() {
 
 		driver.get(baseURL);
