@@ -1,20 +1,19 @@
 package test.regression;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import config.SetupEnviroment;
 import model.MakeFreeReservation;
+import model.Menu;
 
 public class BookFromSectionRestaurants {
-	private WebDriver driver;
+
+	private SetupEnviroment setupEnviroment;
 	private MakeFreeReservation makeReservation;
+	private Menu menu;
+	//
 	private String baseURL = "https://ridvansrestaurantclient.herokuapp.com/";
 	private String loginEmailField = "probniemail@gmail.com";
 	private String loginPasswordField = "probniemail";
@@ -27,19 +26,16 @@ public class BookFromSectionRestaurants {
 
 	@BeforeTest
 	public void setupEnviromnent() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Nejla\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();
 
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		makeReservation = new MakeFreeReservation(driver);
+		setupEnviroment = new SetupEnviroment();
+		makeReservation = new MakeFreeReservation(setupEnviroment.getDriver());
+		menu = makeReservation.getMenu();
 
 	}
 
 	@Test(priority = 1)
 	public void testBookFromSectionRestaurants() throws InterruptedException {
-		driver.get(baseURL);
+		setupEnviroment.getDriver().get(baseURL);
 
 		makeReservation.clickOnLoginLink();
 		makeReservation.setLoginEmailField(loginEmailField);
@@ -52,32 +48,33 @@ public class BookFromSectionRestaurants {
 		makeReservation.clickOnRate();
 		makeReservation.clickOnFilterSearchButton();
 		makeReservation.clickOnFilteredObject();
-		makeReservation.clickOnAboutField();
+//		makeReservation.clickOnAboutField();
+		menu.clickOnAboutButton();
 
-		WebElement titleAbout = driver.findElement(By.xpath("//*[@id=\"About\"]/h5"));
-		String aboutObject = titleAbout.getAttribute("class");
-		AssertJUnit.assertEquals(aboutObject, "restaurant-h5 ng-binding");
+		String aboutHeaderClass = menu.getAboutHeaderClass();
+		Assert.assertEquals(aboutHeaderClass, "restaurant-h5 ng-binding");
 
-		WebElement titleDescription = driver.findElement(By.xpath("//*[@id=\"About\"]/h6"));
-		String descriptionAbout = titleDescription.getAttribute("class");
-		AssertJUnit.assertEquals(descriptionAbout, "desc restaurant-h6");
+		String aboutDescriptionClass = menu.getAboutDescriptionClass();
+		Assert.assertEquals(aboutDescriptionClass, "desc restaurant-h6");
 
 		makeReservation.scrollToTop();
-		makeReservation.clickOnMenuButton();
+		menu.clickOnMenuButton();
 
-		WebElement titleMenu = driver.findElement(By.xpath("//*[@id=\"Menu\"]"));
-		String menuSection = titleMenu.getAttribute("class");
-		AssertJUnit.assertEquals(menuSection, "container-card ng-scope");
+		String menuClass = menu.getMenuClass();
+		Assert.assertEquals(menuClass, "container-card ng-scope");
 
 		makeReservation.clickOnLunchButton();
 		makeReservation.clickOnDinnerButton();
 		makeReservation.clickOnShowFullMenuButton();
 		makeReservation.scrollToTop();
-		makeReservation.clickOnReviewsButton();
+		menu.clickOnReviewsButton();
 
-		WebElement titleReview = driver.findElement(By.xpath("//*[@id=\"Reviews\"]/h5"));
-		String reviewSection = titleReview.getAttribute("class");
-		AssertJUnit.assertEquals(reviewSection, "h5-heading-reservation review-h5 restaurant-h5");
+//		WebElement titleReview = driver.findElement(By.xpath("//*[@id=\"Reviews\"]/h5"));
+//		String reviewSection = titleReview.getAttribute("class");
+//		AssertJUnit.assertEquals(reviewSection, "h5-heading-reservation review-h5 restaurant-h5");
+
+		String reviewClass = menu.getReviewClass();
+		Assert.assertEquals(reviewClass, "h5-heading-reservation review-h5 restaurant-h5");
 
 		makeReservation.scrollToTop();
 		makeReservation.setGuestesForFilteredObject(guestsForFilteredObject);
@@ -93,12 +90,17 @@ public class BookFromSectionRestaurants {
 		makeReservation.clickOnCompleteReservationButton();
 		makeReservation.clickOnMyReservationLink();
 
-		WebElement tooltip1 = driver
-				.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button[1]"));
-		String message1 = tooltip1.getAttribute("class");
-		AssertJUnit.assertEquals(message1, "row-reservation btn-block ng-scope");
+//		WebElement tooltip1 = driver
+//				.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button[1]"));
+//		String message1 = tooltip1.getAttribute("class");
+//		Assert.assertEquals(message1, "row-reservation btn-block ng-scope");
 
-		driver.close();
+		String toolTip1Class = makeReservation.getToolTip1Class();
+		Assert.assertEquals(toolTip1Class, "row-reservation btn-block ng-scope");
+
+		setupEnviroment.getDriver().close();
+
+		System.out.println("Finished regression ");
 
 	}
 
