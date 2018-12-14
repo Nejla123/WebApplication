@@ -1,0 +1,9 @@
+
+Za pokretanje Smoke testa
+java -cp "C:\Users\Nejla\git\repository\WebApplication\WebApp\lib\*;C:\Users\Nejla\git\repository\WebApplication\WebApp\bin" org.testng.TestNG C:\Users\Nejla\git\repository\WebApplication\WebApp\testngsmoke.xml
+
+
+
+
+Za pokretanje regresija testa
+java -cp "C:\Users\Nejla\git\repository\WebApplication\WebApp\lib\*;C:\Users\Nejla\git\repository\WebApplication\WebApp\bin" org.testng.TestNG C:\Users\Nejla\git\repository\WebApplication\WebApp\testng.xml
