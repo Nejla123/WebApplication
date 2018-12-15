@@ -66,6 +66,7 @@ public class CreateAccountFillFields {
 		Assert.assertEquals(title, "login-h3");
 
 		setupEnviroment.getDriver().close();
+		System.out.println("Finished regression test Create an account - fill all fields");
 
 	}
 

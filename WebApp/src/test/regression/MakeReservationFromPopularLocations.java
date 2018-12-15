@@ -57,7 +57,8 @@ public class MakeReservationFromPopularLocations {
 		String message1 = makeReservation.getConfirmationReservationClass();
 		Assert.assertEquals(message1, "row-reservation btn-block ng-scope");
 
-		setupEnviroment.getDriver().get(baseURL);
+		setupEnviroment.getDriver().close();
+		System.out.println("Finished regression test Make Reservation from popular locations section");
 
 	}
 }

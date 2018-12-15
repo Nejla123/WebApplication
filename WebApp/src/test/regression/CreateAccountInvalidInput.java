@@ -48,6 +48,7 @@ public class CreateAccountInvalidInput {
 			Assert.assertEquals(highlighedPhoneNumberField, "form-group formg");
 
 			setupEnviroment.getDriver().close();
+			System.out.println("Finished regression test Create an account - invalid inputs");
 
 		}
 	}

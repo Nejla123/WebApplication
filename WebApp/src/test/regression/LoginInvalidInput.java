@@ -33,6 +33,7 @@ public class LoginInvalidInput {
 		String messageForInvalidEmail = login.getLoginClass();
 		Assert.assertEquals(messageForInvalidEmail, "help-block");
 		setupEnviroment.getDriver().close();
+		System.out.println("Finished regression test Login form - invalid inputs");
 
 	}
 }

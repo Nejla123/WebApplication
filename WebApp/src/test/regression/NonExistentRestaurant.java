@@ -49,7 +49,9 @@ public class NonExistentRestaurant {
 		String messageForNonExistentRestaurant = makeReservation.getMessageClass();
 		Assert.assertEquals(messageForNonExistentRestaurant, "no-results");
 
-		setupEnviroment.getDriver().get(baseURL);
+		setupEnviroment.getDriver().close();
+		System.out.println("Finished regression test Check search bar with non-existent restaurant in the database");
+
 	}
 
 }

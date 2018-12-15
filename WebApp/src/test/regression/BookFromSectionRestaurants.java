@@ -89,7 +89,7 @@ public class BookFromSectionRestaurants {
 
 		setupEnviroment.getDriver().close();
 
-		System.out.println("Finished regression ");
+		System.out.println("Finished regressiontest Book a restaurant from the section Restaurants");
 
 	}
 

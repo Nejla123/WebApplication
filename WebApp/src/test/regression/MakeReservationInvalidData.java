@@ -54,7 +54,9 @@ public class MakeReservationInvalidData {
 		Assert.assertEquals(messageDateField,
 				"form-control home-form-control ng-not-empty ng-valid-max ng-dirty ng-valid-parse ng-invalid ng-invalid-min ng-touched");
 
-		setupEnviroment.getDriver().get(baseURL);
+		setupEnviroment.getDriver().close();
+		System.out.println("Finished regression test Make a free reservation - invalid data");
+
 	}
 
 }

@@ -34,7 +34,8 @@ public class MakeReservationNoInputData {
 		Assert.assertEquals(messageBellowTheField1,
 				"form-control home-form-control ng-pristine ng-untouched ng-empty ng-valid-min ng-valid-max ng-invalid ng-invalid-required");
 
-		setupEnviroment.getDriver().get(baseURL);
+		setupEnviroment.getDriver().close();
+		System.out.println("Finished regression test Make a free reservation - no input data");
 
 	}
 
