@@ -4,13 +4,13 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import config.SetupEnviroment;
+import config.SetupEnvironment;
 import model.MakeFreeReservation;
 import model.Menu;
 
 public class BookFromSectionRestaurants {
 
-	private SetupEnviroment setupEnviroment;
+	private SetupEnvironment setupEnviroment;
 	private MakeFreeReservation makeReservation;
 	private Menu menu;
 	//
@@ -27,7 +27,7 @@ public class BookFromSectionRestaurants {
 	@BeforeTest
 	public void setupEnviromnent() {
 
-		setupEnviroment = new SetupEnviroment();
+		setupEnviroment = new SetupEnvironment();
 		makeReservation = new MakeFreeReservation(setupEnviroment.getDriver());
 		menu = makeReservation.getMenu();
 
@@ -48,7 +48,6 @@ public class BookFromSectionRestaurants {
 		makeReservation.clickOnRate();
 		makeReservation.clickOnFilterSearchButton();
 		makeReservation.clickOnFilteredObject();
-//		makeReservation.clickOnAboutField();
 		menu.clickOnAboutButton();
 
 		String aboutHeaderClass = menu.getAboutHeaderClass();
@@ -68,11 +67,6 @@ public class BookFromSectionRestaurants {
 		makeReservation.clickOnShowFullMenuButton();
 		makeReservation.scrollToTop();
 		menu.clickOnReviewsButton();
-
-//		WebElement titleReview = driver.findElement(By.xpath("//*[@id=\"Reviews\"]/h5"));
-//		String reviewSection = titleReview.getAttribute("class");
-//		AssertJUnit.assertEquals(reviewSection, "h5-heading-reservation review-h5 restaurant-h5");
-
 		String reviewClass = menu.getReviewClass();
 		Assert.assertEquals(reviewClass, "h5-heading-reservation review-h5 restaurant-h5");
 
@@ -89,11 +83,6 @@ public class BookFromSectionRestaurants {
 
 		makeReservation.clickOnCompleteReservationButton();
 		makeReservation.clickOnMyReservationLink();
-
-//		WebElement tooltip1 = driver
-//				.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button[1]"));
-//		String message1 = tooltip1.getAttribute("class");
-//		Assert.assertEquals(message1, "row-reservation btn-block ng-scope");
 
 		String toolTip1Class = makeReservation.getToolTip1Class();
 		Assert.assertEquals(toolTip1Class, "row-reservation btn-block ng-scope");

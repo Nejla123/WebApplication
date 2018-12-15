@@ -1,21 +1,16 @@
 package test.smoke;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import config.SetupEnvironment;
 import model.MakeFreeReservation;
 
 @Test
 public class SmokeTest {
 
-	private WebDriver driver;
+	private SetupEnvironment setupEnviroment;
 	private MakeFreeReservation makeReservation;
 	private String baseURL = "https://ridvansrestaurantclient.herokuapp.com/";
 	private String loginEmailField = "probniemail@gmail.com";
@@ -30,19 +25,14 @@ public class SmokeTest {
 
 	@BeforeTest
 	public void setupEnviromnent() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Nejla\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();
-
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		makeReservation = new MakeFreeReservation(driver);
+		setupEnviroment = new SetupEnvironment();
+		makeReservation = new MakeFreeReservation(setupEnviroment.getDriver());
 
 	}
 
 	@Test
 	public void testMakeFreeReservation() throws InterruptedException {
-		driver.get(baseURL);
+		setupEnviroment.getDriver().get(baseURL);
 		makeReservation.clickOnLoginLink();
 
 		makeReservation.setLoginEmailField(loginEmailField);
@@ -67,10 +57,8 @@ public class SmokeTest {
 		makeReservation.clickOnCompleteReservationButton();
 		makeReservation.clickOnMyReservationLink();
 
-		WebElement completedReservation = driver
-				.findElement(By.xpath("/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button/div[1]"));
-		String title = completedReservation.getAttribute("class");
-		AssertJUnit.assertEquals(title, "col-xs-4 col-info ng-binding");
-		driver.close();
+		String title = makeReservation.getCompletedReservationClass();
+		Assert.assertEquals(title, "col-xs-4 col-info ng-binding");
+		setupEnviroment.getDriver().close();
 	}
 }

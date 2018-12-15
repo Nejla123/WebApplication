@@ -1,20 +1,16 @@
 package test.regression;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import config.SetupEnvironment;
 import model.CreateAccount;
 
 public class CreateAccountFillFields {
-	private WebDriver driver;
+	private SetupEnvironment setupEnviroment;
 	private CreateAccount createAccount;
 	private String baseURL = "https://ridvansrestaurantclient.herokuapp.com/";
 	private String firstNameField = "Amy";
@@ -43,19 +39,15 @@ public class CreateAccountFillFields {
 
 	@BeforeTest
 	public void setupEnviromnent() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Nejla\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		createAccount = new CreateAccount(driver);
+		setupEnviroment = new SetupEnvironment();
+		createAccount = new CreateAccount(setupEnviroment.getDriver());
 
 	}
 
 	@Test(priority = 1)
 	public void testCreateAccountFillField() {
 
-		driver.get(baseURL);
+		setupEnviroment.getDriver().get(baseURL);
 
 		createAccount.clickOnLoginLink();
 		createAccount.clickOnCreateAccountLink();
@@ -70,11 +62,10 @@ public class CreateAccountFillFields {
 		createAccount.confirmPassword(confirmPassword);
 		createAccount.clickOnCreateAccountbutton();
 
-		WebElement createdAccount = driver.findElement(By.xpath("/html/body/div[2]/div/form/ul/li[1]/h3"));
-		String title = createdAccount.getAttribute("class");
-		AssertJUnit.assertEquals(title, "login-h3");
+		String title = createAccount.getCreatedAccountClass();
+		Assert.assertEquals(title, "login-h3");
 
-		driver.close();
+		setupEnviroment.getDriver().close();
 
 	}
 

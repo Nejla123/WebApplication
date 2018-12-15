@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="test.regression.MakeReservationInvalidData">
+      <class name="test.regression.NonExistentRestaurant">
         <methods>
-          <include name="testMakeReservationNoInputData"/>
+          <include name="testNonExistentRestaurant"/>
           <include name="setupEnviromnent"/>
         </methods>
-      </class> <!-- test.regression.MakeReservationInvalidData -->
+      </class> <!-- test.regression.NonExistentRestaurant -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

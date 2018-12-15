@@ -42,6 +42,18 @@ public class CreateAccount {
 	@FindBy(xpath = "/html/body/div[2]/div/form/button")
 	WebElement createAccountButton;
 
+	@FindBy(xpath = "/html/body/div[2]/div/form/ul/li[1]/h3")
+	WebElement createdAccount;
+
+	@FindBy(xpath = "/html/body/div[2]/div/form/div[3]/p")
+	WebElement invalidEmail;
+
+	@FindBy(xpath = "/html/body/div[2]/div/form/div[3]")
+	WebElement invalidEmailField;
+
+	@FindBy(xpath = "/html/body/div[2]/div/form/div[4]")
+	WebElement invalidPhoneNumber;
+
 	public void clickOnLoginLink() {
 		loginLink.click();
 	}
@@ -90,6 +102,27 @@ public class CreateAccount {
 
 	public void clickOnCreateAccountbutton() {
 		createAccountButton.click();
+	}
+
+	public String getCreatedAccountClass() {
+		String title = createdAccount.getAttribute("class");
+		return title;
+	}
+
+	public String getInvalidEmailClass() {
+		String message = invalidEmail.getAttribute("class");
+		return message;
+	}
+
+	public String getInvalidEmailFieldClass() {
+		String highlighedEmailField = invalidEmailField.getAttribute("class");
+		return highlighedEmailField;
+	}
+
+	public String getInvalidPhoneNumberClass() {
+		String highlighedPhoneNumberField = invalidPhoneNumber.getAttribute("class");
+		return highlighedPhoneNumberField;
+
 	}
 
 }

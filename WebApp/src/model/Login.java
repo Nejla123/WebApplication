@@ -20,6 +20,9 @@ public class Login {
 	@FindBy(xpath = "/html/body/div[2]/div/form/button")
 	WebElement loginButton;
 
+	@FindBy(xpath = "/html/body/div[2]/div/form/div[1]/p")
+	WebElement login;
+
 	public Login(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -40,6 +43,11 @@ public class Login {
 
 	public void clickOnLoginButton() {
 		loginButton.click();
+	}
+
+	public String getLoginClass() {
+		String message = login.getAttribute("class");
+		return message;
 	}
 
 }

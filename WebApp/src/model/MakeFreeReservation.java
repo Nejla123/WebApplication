@@ -11,6 +11,8 @@ public class MakeFreeReservation {
 
 	WebDriver driver;
 	Menu menu;
+	@FindBy(xpath = "/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button/div[1]")
+	WebElement completedReservation;
 
 	@FindBy(xpath = "//*[@id=\"js-navbar-collapse\"]/ul/li[3]/a")
 	WebElement loginLink;
@@ -130,15 +132,9 @@ public class MakeFreeReservation {
 
 	@FindBy(xpath = "//*[@id=\"Reservation\"]/form/div/div[2]/input")
 	WebElement yearForFilteredObject;
-//
-//	@FindBy(xpath = "/html/body/div[2]/div[2]/div/div[1]/div/div[2]/a[2]")
-//	WebElement aboutButton;
 
-//	@FindBy(xpath = "/html/body/div[2]/div[2]/div/div[1]/div/div[2]/a[3]")
-//	WebElement menuButton;
-//
-//	@FindBy(xpath = "/html/body/div[2]/div[2]/div/div[1]/div/div[2]/a[4]")
-//	WebElement reviewsBUtton;
+	@FindBy(xpath = "/html/body/div[2]/div[4]/h3")
+	WebElement section;
 
 	@FindBy(xpath = "//*[@id=\"Menu\"]/div[1]/label[2]")
 	WebElement lunchButton;
@@ -175,6 +171,20 @@ public class MakeFreeReservation {
 
 	@FindBy(xpath = "/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button[1]")
 	WebElement tooltip1;
+	@FindBy(xpath = "/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button[3]")
+	WebElement confirmationOfReservation;
+
+	@FindBy(xpath = "/html/body/div[2]/div[1]/div/div/div/form/div/div[2]/input")
+	WebElement tooltipForGuestsField;
+
+	@FindBy(xpath = "/html/body/div[2]/div[1]/div/div/div/form/div/div[3]/input")
+	WebElement tooltipForDateField;
+
+	@FindBy(xpath = "/html/body/div[2]/div[1]/div/div/div/form/div/div[4]/input")
+	WebElement tooltipBellowTheField;
+
+	@FindBy(xpath = "/html/body/div[2]/div[1]/div[3]/div")
+	WebElement titleForNonExistentRestaurant;
 
 	public MakeFreeReservation(WebDriver driver) {
 		this.driver = driver;
@@ -392,15 +402,6 @@ public class MakeFreeReservation {
 
 	}
 
-//	public void clickOnAboutField() {
-//
-//		menu.clickOnAboutButton();
-//	}
-
-//	public void clickOnMenuButton() {
-//		menu.clickOnMenuButton();
-//	}
-
 	public void clickOnLunchButton() {
 		lunchButton.click();
 	}
@@ -414,11 +415,6 @@ public class MakeFreeReservation {
 		showFullMenuButton.click();
 		Thread.sleep(1000);
 	}
-
-//	public void clickOnReviewsButton() throws InterruptedException {
-//		menu.clickOnReviewButton();
-//
-//	}
 
 	public void scrollToTop() throws InterruptedException {
 		Thread.sleep(1000);
@@ -470,6 +466,43 @@ public class MakeFreeReservation {
 
 		String toolTipClass = tooltip1.getAttribute("class");
 		return toolTipClass;
+	}
+
+	public String getSectionClass() {
+		String titlePopularLocations = section.getAttribute("class");
+		return titlePopularLocations;
+	}
+
+	public String getConfirmationReservationClass() {
+		String message1 = confirmationOfReservation.getAttribute("class");
+		return message1;
+	}
+
+	public String getTooltipGuestsField() {
+		String messageGuestsField = tooltipForGuestsField.getAttribute("class");
+		return messageGuestsField;
+	}
+
+	public String getTooltipDateField() {
+		String messageDateField = tooltipForDateField.getAttribute("class");
+
+		return messageDateField;
+	}
+
+	public String getToolTipBellowField() {
+
+		String messageBellowTheField1 = tooltipBellowTheField.getAttribute("class");
+		return messageBellowTheField1;
+	}
+
+	public String getMessageClass() {
+		String messageForNonExistentRestaurant = titleForNonExistentRestaurant.getAttribute("class");
+		return messageForNonExistentRestaurant;
+	}
+
+	public String getCompletedReservationClass() {
+		String title = completedReservation.getAttribute("class");
+		return title;
 	}
 
 }

@@ -1,19 +1,14 @@
 package test.regression;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import config.SetupEnvironment;
 import model.MakeFreeReservation;
 
 public class NonExistentRestaurant {
-	private WebDriver driver;
+	private SetupEnvironment setupEnviroment;
 	private MakeFreeReservation makeReservation;
 	private String loginEmailField = "probniemail@gmail.com";
 	private String loginPasswordField = "probniemail";
@@ -29,18 +24,13 @@ public class NonExistentRestaurant {
 
 	@BeforeTest
 	public void setupEnviromnent() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Nejla\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();
-
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		makeReservation = new MakeFreeReservation(driver);
+		setupEnviroment = new SetupEnvironment();
+		makeReservation = new MakeFreeReservation(setupEnviroment.getDriver());
 	}
 
 	@Test(priority = 1)
 	public void testNonExistentRestaurant() throws InterruptedException {
-		driver.get(baseURL);
+		setupEnviroment.getDriver().get(baseURL);
 		makeReservation.clickOnLoginLink();
 
 		makeReservation.setLoginEmailField(loginEmailField);
@@ -56,10 +46,10 @@ public class NonExistentRestaurant {
 		makeReservation.setTime2(timeField2);
 		makeReservation.clickOnFindTableButton();
 
-		WebElement title = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[3]/div"));
-		String messageForNonExistentRestaurant = title.getAttribute("class");
-		AssertJUnit.assertEquals(messageForNonExistentRestaurant, "no-results");
-		driver.close();
+		String messageForNonExistentRestaurant = makeReservation.getMessageClass();
+		Assert.assertEquals(messageForNonExistentRestaurant, "no-results");
+
+		setupEnviroment.getDriver().get(baseURL);
 	}
 
 }

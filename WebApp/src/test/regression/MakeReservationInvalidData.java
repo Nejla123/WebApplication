@@ -1,19 +1,14 @@
 package test.regression;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import config.SetupEnvironment;
 import model.MakeFreeReservation;
 
 public class MakeReservationInvalidData {
-	private WebDriver driver;
+	private SetupEnvironment setupEnviroment;
 	private MakeFreeReservation makeReservation;
 	private String baseURL = "https://ridvansrestaurantclient.herokuapp.com/";
 	private String loginEmailField = "probniemail@gmail.com";
@@ -28,21 +23,15 @@ public class MakeReservationInvalidData {
 
 	@BeforeTest
 	public void setupEnviromnent() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Nejla\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();
-
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		makeReservation = new MakeFreeReservation(driver);
+		setupEnviroment = new SetupEnvironment();
+		makeReservation = new MakeFreeReservation(setupEnviroment.getDriver());
 
 	}
 
 	@Test(priority = 1)
 	public void testMakeReservationInvalidData() throws InterruptedException {
 
-		driver.get(baseURL);
+		setupEnviroment.getDriver().get(baseURL);
 		makeReservation.clickOnLoginLink();
 		makeReservation.setLoginEmailField(loginEmailField);
 		makeReservation.setLoginPasswordField(loginPasswordField);
@@ -57,18 +46,15 @@ public class MakeReservationInvalidData {
 
 		makeReservation.clickOnFindTableButton();
 
-		WebElement tooltip1 = driver
-				.findElement(By.xpath("/html/body/div[2]/div[1]/div/div/div/form/div/div[2]/input"));
-		String messageGuestsField = tooltip1.getAttribute("class");
-		AssertJUnit.assertEquals(messageGuestsField,
+		String messageGuestsField = makeReservation.getTooltipGuestsField();
+		Assert.assertEquals(messageGuestsField,
 				"form-control home-form-control ng-dirty ng-empty ng-invalid ng-invalid-number ng-touched");
 
-		WebElement tooltip2 = driver
-				.findElement(By.xpath("/html/body/div[2]/div[1]/div/div/div/form/div/div[3]/input"));
-		String messageDateField = tooltip2.getAttribute("class");
-		AssertJUnit.assertEquals(messageDateField,
+		String messageDateField = makeReservation.getTooltipDateField();
+		Assert.assertEquals(messageDateField,
 				"form-control home-form-control ng-not-empty ng-valid-max ng-dirty ng-valid-parse ng-invalid ng-invalid-min ng-touched");
-		driver.close();
+
+		setupEnviroment.getDriver().get(baseURL);
 	}
 
 }
