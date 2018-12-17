@@ -8,7 +8,6 @@ import config.SetupEnvironment;
 import model.CreateAccount;
 
 public class CreateAccountInvalidInput {
-
 	public class CreateAccountFillFields {
 		private SetupEnvironment setupEnviroment;
 		private CreateAccount createAccount;
