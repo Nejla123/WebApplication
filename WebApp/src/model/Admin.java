@@ -73,6 +73,21 @@ public class Admin {
 	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[3]/div/div[2]/form[1]/div/div[1]/div[1]/div")
 	WebElement createdLocationAlert;
 
+	@FindBy(xpath = "/html/body/div[2]/div/div/ul/li[4]/a")
+	WebElement categoriesSection;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[4]/div/div[1]/div[1]/ul/li[2]")
+	WebElement addCategoryButton;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[4]/div/div[2]/form[1]/div/div[1]/input")
+	WebElement categoryNameField;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[4]/div/div[2]/form[1]/div/div[2]/div[2]/button")
+	WebElement createCategoryButton;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[4]/div/div[2]/form[1]/div/div[1]/div")
+	WebElement createdCategoryAlert;
+
 	public Admin(WebDriver driver) {
 		this.driver = driver;
 		makeReservation = new MakeFreeReservation(driver);
@@ -175,6 +190,28 @@ public class Admin {
 
 	public void clickOnAddLocationButton() {
 		addLocationButton.click();
+	}
+
+	public void clickOnCategoriesSection() {
+		categoriesSection.click();
+	}
+
+	public void clickOnAddCategeryButton() {
+		addCategoryButton.click();
+
+	}
+
+	public void setCategoryNameField(String categoryNameField2) {
+		categoryNameField.sendKeys(categoryNameField2);
+	}
+
+	public void clickOnCreateCategoryButton() {
+		createCategoryButton.click();
+	}
+
+	public String getCreatedCategoryClass() {
+		String alertForCreatedCategory = createdCategoryAlert.getAttribute("class");
+		return alertForCreatedCategory;
 	}
 
 }
