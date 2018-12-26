@@ -19,6 +19,15 @@ public class AddRestaurant {
 	private String descriptionField = "Very good.";
 	private String nameFieldForDish1 = "Musaka";
 	private String priceOfDish1 = "10";
+	private String nameFieldForDish2 = "Sarma";
+	private String priceOfDish2 = "8";
+	private String nameFieldForDish3 = "Makarons";
+	private String priceOfDish3 = "7";
+	private String amount1 = "4";
+	private String amount2 = "6";
+	private String amount3 = "8";
+	private String defaultLength = "30";
+
 	// private String uploadLogoImage1 = "C:\\Users\\Nejla\\Desktop\\navigator
 	// slike\\bug1.png";
 	// slike\\slikazanina.jpg";
@@ -60,6 +69,23 @@ public class AddRestaurant {
 		admin.setNameOfDish(nameFieldForDish1);
 		admin.chooseTypeOfDish();
 		admin.setPrice(priceOfDish1);
+		admin.setNameOfDish2(nameFieldForDish2);
+		admin.chooseTypeOfDish2();
+		admin.setPrice2(priceOfDish2);
+		makeReservation.scrollDown2();
+		admin.setNameOfDish3(nameFieldForDish3);
+		admin.chooseTypeOfDish3();
+		admin.setPrice3(priceOfDish3);
+		admin.clickOnTablesSection();
+		admin.chooseTypeOfTables1();
+		admin.setAmount1(amount1);
+		admin.chooseTypeOfTables2();
+		admin.setAmount2(amount2);
+		admin.chooseTypeOfTables3();
+		admin.setAmount3(amount3);
+		admin.clickOnReservationSection();
+		admin.setdefaultLength(defaultLength);
+		admin.clickOnSaveRestaurantButton();
 
 	}
 }
