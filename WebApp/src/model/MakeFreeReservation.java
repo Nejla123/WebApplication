@@ -11,6 +11,8 @@ public class MakeFreeReservation {
 
 	WebDriver driver;
 	Menu menu;
+	Admin admin;
+
 	@FindBy(xpath = "/html/body/div[2]/div/div/div[3]/div/div[1]/div[2]/button/div[1]")
 	WebElement completedReservation;
 
@@ -194,6 +196,10 @@ public class MakeFreeReservation {
 
 	public Menu getMenu() {
 		return menu;
+	}
+
+	public Admin getAdmin() {
+		return admin;
 	}
 
 	public void setSearchBarField(String string) {
