@@ -88,6 +88,54 @@ public class Admin {
 	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[4]/div/div[2]/form[1]/div/div[1]/div")
 	WebElement createdCategoryAlert;
 
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[2]/div/ng-form/div[3]/div[2]/input[1]")
+	WebElement nameFieldForDish2;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[2]/div/ng-form/div[3]/div[3]/select")
+	WebElement typeOfDish2;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[2]/div/ng-form/div[3]/div[4]/input")
+	WebElement priceOfDish2;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[2]/div/ng-form/div[4]/div[2]/input[1]")
+	WebElement nameFieldForDish3;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[2]/div/ng-form/div[4]/div[3]/select")
+	WebElement typeOfDish3;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[2]/div/ng-form/div[4]/div[4]/input")
+	WebElement priceOfDish3;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/ul/li[3]/a")
+	WebElement tablesSection;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[3]/div/ng-form/div[2]/div[2]/select")
+	WebElement typeOfTables1;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[3]/div/ng-form/div[2]/div[3]/input")
+	WebElement amount1;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[3]/div/ng-form/div[3]/div[2]/select")
+	WebElement typeOfTables2;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[3]/div/ng-form/div[3]/div[3]/input")
+	WebElement amount2;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[3]/div/ng-form/div[4]/div[2]/select")
+	WebElement typeOfTables3;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/div/div[3]/div/ng-form/div[4]/div[3]/input")
+	WebElement amount3;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[1]/ul/li[4]/a")
+	WebElement reservationsSection;
+
+	@FindBy(xpath = "//*[@id=\"defaultStay\"]")
+	WebElement defaultLength;
+
+	@FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/div/div[2]/form/div[2]/div[2]/div[2]/button")
+	WebElement saveRestaurantButton;
+
 	public Admin(WebDriver driver) {
 		this.driver = driver;
 		makeReservation = new MakeFreeReservation(driver);
@@ -111,9 +159,13 @@ public class Admin {
 		return makeReservation;
 	}
 
-	public void clickOnUploadLogo(String uploadLogoImage1) {
-		uploadLogoImage.click();
-		uploadLogoImage.sendKeys("uploadLogoImage1");
+	public void UploadLogo() throws InterruptedException {
+		// uploadLogoImage.click();
+		WebElement frame = driver.switchTo().activeElement();
+		frame.sendKeys("C:\\Users\\Nejla\\Desktop\\webapp\\kaminn.png");
+
+		// uploadLogoImage.sendKeys(Keys.ESCAPE);
+
 	}
 
 	public void setNameField() {
@@ -125,10 +177,10 @@ public class Admin {
 		category.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
 	}
 
-	public void uploadCoverPhoto(String uploadLogoImage1) throws InterruptedException {
+	public void uploadCoverPhoto() throws InterruptedException {
 		uploadCoverPhoto.click();
-		uploadCoverPhoto.sendKeys("C:\\Users");
-		Thread.sleep(1000);
+		WebElement frame = driver.switchTo().activeElement();
+		frame.sendKeys("C:\\Users\\Nejla\\Desktop\\webapp\\noentercity.png");
 	}
 
 	public void chooseCountry() {
@@ -212,6 +264,82 @@ public class Admin {
 	public String getCreatedCategoryClass() {
 		String alertForCreatedCategory = createdCategoryAlert.getAttribute("class");
 		return alertForCreatedCategory;
+	}
+
+	public void setNameOfDish2(String nameFieldForDish22) {
+		nameFieldForDish2.sendKeys(nameFieldForDish22);
+	}
+
+	public void chooseTypeOfDish2() {
+		typeOfDish2.click();
+		typeOfDish2.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+
+	}
+
+	public void setPrice2(String priceOfDish22) {
+		priceOfDish2.sendKeys(priceOfDish22);
+	}
+
+	public void setNameOfDish3(String nameFieldForDish32) {
+		nameFieldForDish3.sendKeys(nameFieldForDish32);
+	}
+
+	public void chooseTypeOfDish3() {
+		typeOfDish3.click();
+		typeOfDish3.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+	}
+
+	public void setPrice3(String priceOfDish32) {
+		priceOfDish3.sendKeys(priceOfDish32);
+	}
+
+	public void clickOnTablesSection() {
+		tablesSection.click();
+	}
+
+	public void chooseTypeOfTables1() {
+		typeOfTables1.click();
+		typeOfTables1.sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+	}
+
+	public void chooseTypeOfTables2() {
+		typeOfTables2.click();
+		typeOfTables2.sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+	}
+
+	public void chooseTypeOfTables3() {
+		typeOfTables3.click();
+
+		typeOfTables3.sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+
+	}
+
+	public void setAmount1(String amount12) {
+		amount1.sendKeys(amount12);
+	}
+
+	public void setAmount2(String amount22) {
+		amount2.sendKeys(amount22);
+	}
+
+	public void setAmount3(String amount32) {
+		amount3.sendKeys(amount32);
+	}
+
+	public void clickOnReservationSection() {
+		reservationsSection.click();
+	}
+
+	public void setdefaultLength(String defaultLength2) {
+		defaultLength.sendKeys(defaultLength2);
+	}
+
+	public void clickOnSaveRestaurantButton() {
+		saveRestaurantButton.click();
+	}
+
+	public void clickOnUploadLogo() {
+		uploadLogoImage.click();
 	}
 
 }

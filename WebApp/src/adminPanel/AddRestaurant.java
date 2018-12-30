@@ -28,7 +28,8 @@ public class AddRestaurant {
 	private String amount3 = "8";
 	private String defaultLength = "30";
 
-	// private String uploadLogoImage1 = "C:\\Users\\Nejla\\Desktop\\navigator
+	// private String uploadLogoImage1 =
+	// "C:\\Users\\Nejla\\Desktop\\webapp\\kaminn.png";
 	// slike\\bug1.png";
 	// slike\\slikazanina.jpg";
 
@@ -43,7 +44,7 @@ public class AddRestaurant {
 
 	}
 
-	@Test(priority = 1)
+	@Test
 	public void testAddRestaurant() throws InterruptedException {
 		setupEnviroment.getDriver().get(baseURL);
 
@@ -54,11 +55,15 @@ public class AddRestaurant {
 		admin.clickOnAdminLink();
 		admin.clikcOnRestaurantSection();
 		admin.clickOnAddRestaurantButton();
-		// admin.clickOnUploadLogo("uploadLogoImage1");
+		// admin.clickOnUploadLogo();
+
+		admin.UploadLogo();
+
 		admin.setNameField();
 		admin.clickOnCategory();
-		// admin.uploadCoverPhoto("C:\\Users\\Nejla\\Desktop\\navigator
-		// slike\\bug1.png1");
+
+		admin.uploadCoverPhoto();
+
 		admin.chooseCountry();
 		admin.chooseCity();
 		admin.setDescription(descriptionField);
