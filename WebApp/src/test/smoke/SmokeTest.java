@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import config.SetupEnvironment;
 import model.MakeFreeReservation;
 
-@Test
 public class SmokeTest {
 
 	private SetupEnvironment setupEnviroment;
